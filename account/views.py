@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login
 from django.conf import settings
-from account.utils import send_otp_to_user
+from account.utils import send_otp_to_user, sign_up_email, sign_in_email
 from account.models import *
 from django.http import HttpResponse
 from django.contrib import messages
@@ -24,9 +24,6 @@ def sign_up(request):
             if user.username == username:
                 messages.info(request, "Username is already taken")
                 return redirect("/")
-            elif user.email == email:
-                messages.info(request, "Email is already taken")
-                return redirect("/")
             elif password1 != password2:
                 messages.info(request, "Password is not match")
                 return redirect("/")
@@ -35,15 +32,7 @@ def sign_up(request):
         user.set_password(password1)
         user.save()
         messages.info(request, "Account create successfully")
-
-        send_mail(
-            subject = "Welcome to Mysite!",
-            message = "Thank You for sign. We glab to have you",
-            from_email = settings.EMAIL_HOST_USER,
-            recipient_list = [email],
-            fail_silently=False,
-            
-        )
+        sign_up_email(email)
         return redirect("/sign_in/")
     return render(request, "account/sign_up.html")
 
@@ -52,6 +41,7 @@ def sign_in(request):
         return redirect("/home/")
 
     if request.method == "POST":
+        global email
         email = request.POST.get("email")
         password = request.POST.get("password")
 
@@ -82,6 +72,7 @@ def verify_otp(request):
         print(session_otp)
         if session_otp == otp:
             login(request, user)
+            sign_in_email(email)
             return redirect("/home/")
         else:
             messages.info(request,"Otp is worng")

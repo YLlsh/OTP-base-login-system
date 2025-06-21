@@ -10,7 +10,7 @@
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-   <link href="{% static 'account/style.css' %}" rel="stylesheet">
+    <link href="{% static 'account/style.css' %}" rel="stylesheet">
 
 </head>
 
@@ -19,14 +19,13 @@
         <h2>Sign In</h2>
 
         {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <div class="alert alert-danger" role="alert">
-                {{ message }}
-            </div>
 
-            {% endfor %}
-        </ul>
+        {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+
+        {% endfor %}
         {% endif %}
 
 
