@@ -22,7 +22,7 @@ def send_otp_to_user(to_email):
         <h2 style="color: #24a0fc;"">Hi {user.username},</h2>
         <p style="font-size:16px;">Your One-Time Password (OTP) for verification is:</p>
         <p style="font-size: 22px;font-weight:bold;color: #24a0fc;text-align:center;margin:20px 0;">{otp}</p>
-        <p style="font-size:14px;">This OTP is valid for the next 10 minutes. Please do not share it with anyone.</p>
+        <p style="font-size:14px;">This OTP is valid for the next 5 minutes. Please do not share it with anyone.</p>
         <hr style="margin:30px 0;">
         <p style="font-size:14px;">Thank you,<br><strong>Your Website Team</strong></p>
     </div>
