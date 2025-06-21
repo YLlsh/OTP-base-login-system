@@ -18,6 +18,17 @@ This is a Django-based authentication system where users can log in using a One-
 - HTML / CSS
 - SMTP (for sending OTP emails)
 
+## How It Works
+- User enters their email address on the sign_in page.
+
+- A 3-digit OTP is generated and sent to the email.
+
+- User enters the OTP on the verification page.
+
+- If OTP is correct and within time limit, user is logged in.
+
+- If incorrect or expired if you stay in otp verify page, appropriate error message is shown
+
 ## Screenshots
 **sign_up image**
 
